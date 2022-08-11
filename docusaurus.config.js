@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Kan Ouivirach',
+  tagline: 'Data Product Developer. Passionate in software engineering, data engineering, and data science.',
   url: 'https://zkan.github.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -57,7 +57,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'Kan Ouivirach',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
