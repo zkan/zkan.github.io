@@ -34,4 +34,4 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 gem "jekyll-last-modified-at", "~> 1.3"
 
-gem "nokogiri", "~> 1.18"
+gem "nokogiri", "~> 1.19"
