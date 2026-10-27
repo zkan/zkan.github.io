@@ -1,0 +1,84 @@
+---
+import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { SITE_DESCRIPTION } from '../consts';
+import { getPublishedPosts } from '../lib/posts';
+
+const latestPosts = (await getPublishedPosts()).slice(0, 3);
+
+const areas = [
+  {
+    title: 'Area one',
+    text: 'Placeholder. A sentence about this work will go here.',
+  },
+  {
+    title: 'Area two',
+    text: 'Placeholder. A sentence about this work will go here.',
+  },
+  {
+    title: 'Area three',
+    text: 'Placeholder. A sentence about this work will go here.',
+  },
+];
+
+const projects = [
+  {
+    title: 'Project one',
+    text: 'Placeholder. Swap in a real name, a sentence about it, and a link.',
+  },
+  {
+    title: 'Project two',
+    text: 'Placeholder. Swap in a real name, a sentence about it, and a link.',
+  },
+  {
+    title: 'Project three',
+    text: 'Placeholder. Swap in a real name, a sentence about it, and a link.',
+  },
+];
+---
+
+<Base>
+  <section class="hero">
+    <p class="kicker">Placeholder</p>
+    <h1>Kan</h1>
+    <p class="lede">{SITE_DESCRIPTION}</p>
+  </section>
+
+  <section class="block" aria-labelledby="what-i-do">
+    <h2 id="what-i-do">What I do</h2>
+    <ul class="cards">
+      {
+        areas.map((area) => (
+          <li class="card">
+            <h3>{area.title}</h3>
+            <p>{area.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="proof">
+    <h2 id="proof">Proof</h2>
+    <div class="proof">
+      <div>
+        <h3>Projects</h3>
+        <ul class="entries">
+          {
+            projects.map((project) => (
+              <li>
+                <h4>{project.title}</h4>
+                <p>{project.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div>
+        <h3>Latest posts</h3>
+        <PostList posts={latestPosts} />
+        <p class="more"><a href="/posts/">All posts</a></p>
+      </div>
+    </div>
+  </section>
+</Base>

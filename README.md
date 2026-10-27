@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kan
 
-## Getting Started
+A minimal static personal site for Kan, published at <https://zkan.github.io>.
 
-First, run the development server:
+The copy and the visual design are placeholders. Styling lives in `src/styles/global.css` as color, font, and spacing tokens, with light and dark colors chosen by `prefers-color-scheme`.
+
+Built with [Astro](https://astro.build/).
+
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:4321>.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Add a post
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Add a `.md` file under `src/content/posts`. MDX (`.mdx`) works the same way.
 
-## Learn More
+```md
+---
+title: Post title
+description: One sentence summary.
+pubDate: 2026-10-27
+tags:
+  - optional
+draft: false
+---
 
-To learn more about Next.js, take a look at the following resources:
+Write the post here.
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`title`, `description`, and `pubDate` are required. `tags` and `draft` are optional. Set `draft: true` to hide a post from the production build, the post index, and the RSS feed. Drafts still appear while the dev server is running.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Keep post files directly in `src/content/posts` (no subfolders). The site is laid out for a short list, on the order of two or three posts.
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pushes to `main` build the site with the official [Astro GitHub Action](https://github.com/withastro/action) and deploy that build to GitHub Pages with `actions/deploy-pages`. Pull requests run a build-only check and do not deploy.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The feed is at `/rss.xml`. The sitemap is at `/sitemap-index.xml`.
+
+### One-time GitHub setting
+
+In the repository on GitHub, open **Settings > Pages** and set **Source** to **GitHub Actions**.
