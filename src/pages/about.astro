@@ -2,8 +2,8 @@
 import Base from '../layouts/Base.astro';
 import { BOOKING_MAILTO } from '../consts';
 
-// TODO(placeholder): replace the about page summary before launch.
-const description = 'Your about summary here';
+const description =
+  'ODDS-TEAM. Data Product Developer. Passionate in software engineering, data engineering, and data science. ♥';
 ---
 
 <Base title="About" description={description}>
@@ -12,10 +12,7 @@ const description = 'Your about summary here';
       <p class="label">About</p>
       <h1>About</h1>
     </header>
-    <!-- TODO(placeholder): replace the about page paragraph before launch. -->
-    <p class="lede">
-      Your about paragraph here. Say who you help and how you work, in your own words.
-    </p>
+    <p class="lede">{description}</p>
     <a class="button button-primary" href={BOOKING_MAILTO}>Work with me</a>
   </article>
 </Base>
