@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPublishedPosts } from '../../lib/posts';
+
+const posts = await getPublishedPosts();
+---
+
+<Base
+  title="Posts"
+  description="Posts by Kan. This index is a placeholder until there is more writing."
+>
+  <header class="page-intro">
+    <p class="kicker">Placeholder</p>
+    <h1>Posts</h1>
+    <p>Writing will be listed here. A handful of posts is enough for this page.</p>
+  </header>
+  <PostList posts={posts} />
+</Base>
