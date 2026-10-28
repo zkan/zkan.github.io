@@ -25,12 +25,12 @@ const { Content } = await render(post);
   ogType="article"
   pubDate={post.data.pubDate}
 >
-  <article>
-    <header class="post-header">
-      <p class="kicker"><a href="/posts/">Posts</a></p>
+  <article class="section measure">
+    <header class="page-header">
+      <p class="label">Writing</p>
       <h1>{post.data.title}</h1>
       <p class="lede">{post.data.description}</p>
-      <p class="meta">
+      <p class="caption muted">
         <time datetime={post.data.pubDate.toISOString()}>
           {formatDate(post.data.pubDate)}
         </time>
@@ -49,5 +49,6 @@ const { Content } = await render(post);
     <div class="prose">
       <Content />
     </div>
+    <p class="back-link"><a href="/posts/">← Writing</a></p>
   </article>
 </Base>

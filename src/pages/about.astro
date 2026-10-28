@@ -1,21 +1,21 @@
 ---
 import Base from '../layouts/Base.astro';
+import { BOOKING_MAILTO } from '../consts';
+
+// TODO(placeholder): replace the about page summary before launch.
+const description = 'Your about summary here';
 ---
 
-<Base
-  title="About"
-  description="About Kan. This page is a placeholder until a real bio is written."
->
-  <header class="page-intro">
-    <p class="kicker">Placeholder</p>
-    <h1>About</h1>
-  </header>
-  <div class="prose">
-    <p>
-      This page is a placeholder. A short bio will go here: who Kan is, what he works on, and how to get in touch.
+<Base title="About" description={description}>
+  <article class="section measure stack-lg">
+    <header class="page-header">
+      <p class="label">About</p>
+      <h1>About</h1>
+    </header>
+    <!-- TODO(placeholder): replace the about page paragraph before launch. -->
+    <p class="lede">
+      Your about paragraph here. Say who you help and how you work, in your own words.
     </p>
-    <p>
-      Nothing here is final. The words and the layout are a skeleton for a design that has not been chosen yet.
-    </p>
-  </div>
+    <a class="button button-primary" href={BOOKING_MAILTO}>Work with me</a>
+  </article>
 </Base>

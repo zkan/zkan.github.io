@@ -1,0 +1,48 @@
+---
+import { BOOKING_MAILTO, SITE_NAME } from '../consts';
+
+const year = new Date().getFullYear();
+
+const visit = [
+  { href: '/about/', label: 'About' },
+  { href: '/#work', label: 'Work' },
+  { href: '/posts/', label: 'Writing' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-identity">
+      <a class="brand" href="/">{SITE_NAME}</a>
+      <!-- TODO(placeholder): replace the tagline before launch. -->
+      <p class="footer-tagline">Your tagline here</p>
+      <a class="button button-primary" href={BOOKING_MAILTO}>Work with me</a>
+    </div>
+    <div>
+      <p class="label">Visit</p>
+      <ul class="link-list">
+        {
+          visit.map((item) => (
+            <li>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div>
+      <p class="label">Connect</p>
+      <ul class="link-list">
+        <li><a href={BOOKING_MAILTO}>Work with me</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+        <li><a href="/#practice">Software</a></li>
+        <li><a href="/#practice">Data</a></li>
+        <li><a href="/#practice">AI</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="copyright">&copy; {year} {SITE_NAME}</p>
+  </div>
+</footer>

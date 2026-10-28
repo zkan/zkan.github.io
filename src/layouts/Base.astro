@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import Banner from '../components/Banner.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import { SITE_DESCRIPTION, SITE_NAME } from '../consts';
 
 interface Props {
@@ -7,6 +10,7 @@ interface Props {
   description?: string;
   ogType?: 'website' | 'article';
   pubDate?: Date;
+  showBanner?: boolean;
 }
 
 const {
@@ -14,20 +18,13 @@ const {
   description = SITE_DESCRIPTION,
   ogType = 'website',
   pubDate,
+  showBanner = false,
 } = Astro.props;
 
 const pageTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME;
 const canonical = Astro.site
   ? new URL(Astro.url.pathname, Astro.site)
   : Astro.url;
-const path = Astro.url.pathname;
-const year = new Date().getFullYear();
-
-function current(href: string): 'page' | undefined {
-  if (href === '/') return path === '/' ? 'page' : undefined;
-  const normalized = path.endsWith('/') ? path : `${path}/`;
-  return normalized.startsWith(href) ? 'page' : undefined;
-}
 ---
 
 <!doctype html>
@@ -64,25 +61,11 @@ function current(href: string): 'page' | undefined {
   </head>
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
-    <header class="site-header">
-      <div class="shell">
-        <a class="site-name" href="/" aria-current={current('/')}>{SITE_NAME}</a>
-        <nav aria-label="Primary">
-          <ul class="nav">
-            <li><a href="/posts/" aria-current={current('/posts/')}>Posts</a></li>
-            <li><a href="/about/" aria-current={current('/about/')}>About</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <main id="content" class="shell">
+    {showBanner && <Banner />}
+    <SiteHeader />
+    <main id="content" class="wrap site-main">
       <slot />
     </main>
-    <footer class="site-footer">
-      <div class="shell">
-        <p>&copy; {year} {SITE_NAME}</p>
-        <a href="/rss.xml">RSS</a>
-      </div>
-    </footer>
+    <SiteFooter />
   </body>
 </html>
