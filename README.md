@@ -8,6 +8,8 @@ Built with [Astro](https://astro.build/).
 
 ## Run locally
 
+Node.js 22.23.4 or newer. `.nvmrc` pins `22.23.4`, the minimum this version of Astro requires.
+
 ```bash
 npm install
 npm run dev
@@ -38,7 +40,7 @@ Keep post files directly in `src/content/posts` (no subfolders). The site is lai
 
 ## Deploy
 
-Pushes to `main` build the site with the official [Astro GitHub Action](https://github.com/withastro/action) and deploy that build to GitHub Pages with `actions/deploy-pages`. Pull requests run a build-only check and do not deploy.
+Pushes to `main` build the site with the official [Astro GitHub Action](https://github.com/withastro/action) and deploy that build to GitHub Pages with `actions/deploy-pages`. Pull requests run a build-only check and do not deploy. Both builds use the Node version in `.nvmrc`.
 
 The feed is at `/rss.xml`. The sitemap is at `/sitemap-index.xml`.
 
