@@ -1,84 +1,137 @@
 ---
 import Base from '../layouts/Base.astro';
+import CtaPanel from '../components/CtaPanel.astro';
 import PostList from '../components/PostList.astro';
-import { SITE_DESCRIPTION } from '../consts';
+import { BOOKING_MAILTO } from '../consts';
 import { getPublishedPosts } from '../lib/posts';
 
 const latestPosts = (await getPublishedPosts()).slice(0, 3);
 
-const areas = [
+const ways = [
   {
-    title: 'Area one',
-    text: 'Placeholder. A sentence about this work will go here.',
+    label: 'Software',
+    // TODO(placeholder): replace the software offer before launch.
+    title: 'Your software offer here',
+    // TODO(placeholder): replace the software points before launch.
+    points: ['Your outcome here', 'Your second point here'],
+    // TODO(placeholder): replace who this is for before launch.
+    bestFor: 'Your audience here',
   },
   {
-    title: 'Area two',
-    text: 'Placeholder. A sentence about this work will go here.',
+    label: 'Data',
+    // TODO(placeholder): replace the data offer before launch.
+    title: 'Your data offer here',
+    // TODO(placeholder): replace the data points before launch.
+    points: ['Your outcome here', 'Your second point here'],
+    // TODO(placeholder): replace who this is for before launch.
+    bestFor: 'Your audience here',
   },
   {
-    title: 'Area three',
-    text: 'Placeholder. A sentence about this work will go here.',
+    label: 'AI',
+    // TODO(placeholder): replace the AI offer before launch.
+    title: 'Your AI offer here',
+    // TODO(placeholder): replace the AI points before launch.
+    points: ['Your outcome here', 'Your second point here'],
+    // TODO(placeholder): replace who this is for before launch.
+    bestFor: 'Your audience here',
   },
 ];
 
-const projects = [
+const work = [
   {
-    title: 'Project one',
-    text: 'Placeholder. Swap in a real name, a sentence about it, and a link.',
+    // TODO(placeholder): replace this project before launch. No client name, result, or link yet.
+    name: 'Your project name here',
+    description: 'Your project description here',
+    year: 'Year',
   },
   {
-    title: 'Project two',
-    text: 'Placeholder. Swap in a real name, a sentence about it, and a link.',
+    // TODO(placeholder): replace this project before launch. No client name, result, or link yet.
+    name: 'Your second project here',
+    description: 'Your project description here',
+    year: 'Year',
   },
   {
-    title: 'Project three',
-    text: 'Placeholder. Swap in a real name, a sentence about it, and a link.',
+    // TODO(placeholder): replace this project before launch. No client name, result, or link yet.
+    name: 'Your third project here',
+    description: 'Your project description here',
+    year: 'Year',
   },
 ];
 ---
 
-<Base>
-  <section class="hero">
-    <p class="kicker">Placeholder</p>
-    <h1>Kan</h1>
-    <p class="lede">{SITE_DESCRIPTION}</p>
+<Base showBanner>
+  <section class="hero section" aria-labelledby="hero-title">
+    <!-- TODO(placeholder): replace the eyebrow before launch. -->
+    <p class="label">Your eyebrow here</p>
+    <h1 id="hero-title">
+      <!-- TODO(placeholder): replace the headline. Keep one word italic on the butter marker. -->
+      Your headline with one <em>emphasis</em> word
+    </h1>
+    <!-- TODO(placeholder): replace the subline before launch. -->
+    <p class="lede">Your outcome here</p>
+    <a class="button button-primary" href={BOOKING_MAILTO}>Book a call</a>
   </section>
 
-  <section class="block" aria-labelledby="what-i-do">
-    <h2 id="what-i-do">What I do</h2>
-    <ul class="cards">
+  <section class="section" id="practice" aria-labelledby="practice-title">
+    <h2 id="practice-title" class="section-title">Three ways to work with me</h2>
+    <div class="grid-3">
       {
-        areas.map((area) => (
-          <li class="card">
-            <h3>{area.title}</h3>
-            <p>{area.text}</p>
-          </li>
+        ways.map((way) => (
+          <article class="card">
+            <p class="label">{way.label}</p>
+            <h3>{way.title}</h3>
+            <ul class="card-points">
+              {way.points.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+            <p class="best-for">
+              <span class="best-for-label">Best for</span> {way.bestFor}
+            </p>
+            <!-- TODO(placeholder): point Learn more at a real service page. -->
+            <a class="button button-ghost" href="/about/">
+              Learn more <span aria-hidden="true">→</span>
+            </a>
+          </article>
         ))
       }
-    </ul>
-  </section>
-
-  <section class="block" aria-labelledby="proof">
-    <h2 id="proof">Proof</h2>
-    <div class="proof">
-      <div>
-        <h3>Projects</h3>
-        <ul class="entries">
-          {
-            projects.map((project) => (
-              <li>
-                <h4>{project.title}</h4>
-                <p>{project.text}</p>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div>
-        <h3>Latest posts</h3>
-        <PostList posts={latestPosts} />
-        <p class="more"><a href="/posts/">All posts</a></p>
-      </div>
     </div>
   </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <h2 id="work-title" class="section-title">Selected work</h2>
+    <div class="grid-3">
+      {
+        work.map((project) => (
+          <article class="card">
+            <div class="work-kicker">
+              <span class="label">{project.year}</span>
+              <span class="work-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </div>
+            <h3>{project.name}</h3>
+            <p class="work-description">{project.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section" id="writing" aria-labelledby="writing-title">
+    <h2 id="writing-title" class="section-title">Writing</h2>
+    <PostList posts={latestPosts} />
+  </section>
+
+  <section class="section" aria-labelledby="about-title">
+    <div class="measure stack">
+      <h2 id="about-title" class="label">About</h2>
+      <!-- TODO(placeholder): replace the about paragraph before launch. -->
+      <p class="lede">
+        Your about paragraph here. Say who you help and how you work, in your own words.
+      </p>
+    </div>
+  </section>
+
+  <CtaPanel />
 </Base>

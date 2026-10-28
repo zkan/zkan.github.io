@@ -1,0 +1,38 @@
+---
+import { BOOKING_MAILTO, SITE_NAME } from '../consts';
+
+const path = Astro.url.pathname;
+
+const links = [
+  { href: '/about/', label: 'About' },
+  { href: '/#work', label: 'Work' },
+  { href: '/posts/', label: 'Writing' },
+  { href: '/#contact', label: 'Contact' },
+];
+
+function current(href: string): 'page' | undefined {
+  if (href.includes('#')) return undefined;
+  const normalized = path.endsWith('/') ? path : `${path}/`;
+  return normalized.startsWith(href) ? 'page' : undefined;
+}
+---
+
+<header class="site-header">
+  <div class="wrap nav-bar">
+    <a class="brand" href="/">{SITE_NAME}</a>
+    <input id="nav-toggle" class="nav-toggle" type="checkbox" />
+    <label class="nav-summary" for="nav-toggle">Menu</label>
+    <div class="nav-panel">
+      <nav class="nav-links" aria-label="Primary">
+        {
+          links.map((item) => (
+            <a href={item.href} aria-current={current(item.href)}>
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+      <a class="button button-primary" href={BOOKING_MAILTO}>Work with me</a>
+    </div>
+  </div>
+</header>

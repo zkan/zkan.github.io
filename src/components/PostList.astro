@@ -16,14 +16,15 @@ const { posts } = Astro.props;
     <ol class="post-list">
       {posts.map((post) => (
         <li>
-          <p class="meta">
+          <a class="post-row" href={`/posts/${post.id}/`}>
+            <span class="post-title">
+              {post.data.title}
+              {post.data.draft ? ' (Draft)' : ''}
+            </span>
             <time datetime={post.data.pubDate.toISOString()}>
               {formatDate(post.data.pubDate)}
             </time>
-            {post.data.draft ? ' · Draft' : ''}
-          </p>
-          <a href={`/posts/${post.id}/`}>{post.data.title}</a>
-          <p>{post.data.description}</p>
+          </a>
         </li>
       ))}
     </ol>
